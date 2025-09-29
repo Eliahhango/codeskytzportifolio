@@ -1,41 +1,73 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-
-const dataPath = path.join(process.cwd(), 'data', 'founders.json')
-
-async function readData(){
-  try{ const raw = await fs.readFile(dataPath,'utf-8'); return JSON.parse(raw||'[]') }catch(e){ return [] }
-}
+import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from '../../../../lib/firebaseClient'
+import { db } from '../../../../lib/firebaseClient'
+import { adminDb, isAdmin } from '../../../../lib/firebaseAdmin'
 
 export async function GET(req, { params }){
-  try{ const arr = await readData(); const item = arr.find(f=>f.id===params.id); if(!item) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 }); return new Response(JSON.stringify(item), { status: 200 }) }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
+  try{
+    if(isAdmin && adminDb){
+      const snap = await adminDb.collection('founders').doc(params.id).get()
+      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
+    }
+    const dref = doc(db, 'founders', params.id)
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
+  }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
 }
 
 export async function PUT(req, { params }){
   try{
     const body = await req.json()
-    const arr = await readData()
-    const idx = arr.findIndex(f=>f.id===params.id)
-    if(idx === -1) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    // Normalize fields on update
-    const name = body.name || body.fullName || arr[idx].name
-    const position = body.position || body.role || arr[idx].position || arr[idx].role
-    const story = body.story || body.bio || arr[idx].story || arr[idx].bio
-    const image = body.image || body.imageUrl || arr[idx].image
-    const updated = { ...arr[idx], ...body, name, position, role: position, story, bio: story, image }
-    arr[idx] = updated
-    await fs.writeFile(dataPath, JSON.stringify(arr, null, 2), 'utf-8')
-    return new Response(JSON.stringify(updated), { status: 200 })
+    if(isAdmin && adminDb){
+      const ref = adminDb.collection('founders').doc(params.id)
+      const snap = await ref.get()
+      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      const name = body.name || body.fullName || undefined
+      const position = body.position || body.role || undefined
+      const story = body.story || body.bio || undefined
+      const image = body.image || body.imageUrl || undefined
+      const payload = { ...body }
+      if(name) payload.name = name
+      if(position) payload.position = position
+      if(position) payload.role = position
+      if(story) payload.story = story
+      if(story) payload.bio = story
+      if(image) payload.image = image
+      payload.updatedAt = new Date()
+      await ref.update(payload)
+      const updated = await ref.get()
+      return new Response(JSON.stringify({ id: updated.id, ...updated.data() }), { status: 200 })
+    }
+    const dref = doc(db, 'founders', params.id)
+    const body2 = await req.json()
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    // normalize fields on update
+    const name = body2.name || body2.fullName || snap.data().name
+    const position = body2.position || body2.role || snap.data().position || snap.data().role
+    const story = body2.story || body2.bio || snap.data().story || snap.data().bio
+    const image = body2.image || body2.imageUrl || snap.data().image
+    const updated = { ...snap.data(), ...body2, name, position, role: position, story, bio: story, image }
+    await updateDoc(dref, updated)
+    const updatedSnap = await getDoc(dref)
+    return new Response(JSON.stringify({ id: updatedSnap.id, ...updatedSnap.data() }), { status: 200 })
   }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
 }
 
 export async function DELETE(req, { params }){
   try{
-    const arr = await readData()
-    const idx = arr.findIndex(f=>f.id===params.id)
-    if(idx === -1) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    const removed = arr.splice(idx,1)[0]
-    await fs.writeFile(dataPath, JSON.stringify(arr, null, 2), 'utf-8')
-    return new Response(JSON.stringify({ ok: true, removed }), { status: 200 })
+    if(isAdmin && adminDb){
+      const ref = adminDb.collection('founders').doc(params.id)
+      const snap = await ref.get()
+      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      await ref.delete()
+      return new Response(JSON.stringify({ ok: true, id: params.id }), { status: 200 })
+    }
+    const dref = doc(db, 'founders', params.id)
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    await deleteDoc(dref)
+    return new Response(JSON.stringify({ ok: true, id: params.id }), { status: 200 })
   }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
 }

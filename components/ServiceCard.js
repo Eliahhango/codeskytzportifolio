@@ -6,7 +6,8 @@ export default function ServiceCard({ service }){
   const { title, desc, slug, color, logo, icon } = service;
 
   const logoNode = icon ? (
-    <div className="w-16 h-16 flex items-center justify-center text-white text-xl">
+    // let the icon take the service color (FontAwesome uses currentColor)
+    <div className="w-16 h-16 flex items-center justify-center text-xl" style={{color: color}}>
       <FontAwesomeIcon icon={icon} />
     </div>
   ) : (
@@ -15,7 +16,7 @@ export default function ServiceCard({ service }){
 
   return (
     <div className="rounded-2xl shadow-lg bg-white dark:bg-slate-900 p-6 flex flex-col sm:flex-row gap-6 items-center" style={{minHeight: 160}}>
-        <div className="flex-shrink-0 flex items-center justify-center w-28 h-28 rounded-xl" style={{background: `${color}18`, border: `1px solid ${color}33`}} aria-hidden>
+        <div className="flex-shrink-0 flex items-center justify-center w-28 h-28 rounded-xl" style={{background: `${color}20`, border: `1px solid ${color}44`}} aria-hidden>
           {/* logo can be an icon spec or an SVG node/component */}
           {logoNode}
         </div>

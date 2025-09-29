@@ -41,49 +41,23 @@ export default function NewProject(){
     setSelectedTechs(s => s.includes(t)? s.filter(x=>x!==t): [...s,t])
   }
 
-  async function uploadToImgbb(base64){
-    if(!apiKey){
-      throw new Error('IMGBB API key not configured. Set NEXT_PUBLIC_IMGBB_API in your environment.')
-    }
-    const form = new FormData()
-    form.append('key', apiKey)
-
-    // If caller passed a File, send it directly (more robust). Otherwise expect base64 string.
-    if(base64 && typeof base64 === 'object' && base64 instanceof File) {
-      form.append('image', base64)
-    } else if(base64 && typeof base64 === 'string') {
-      // Some files may produce data URIs with different mime strings
-      // Remove any data:<mime>;base64, prefix and whitespace/newlines
-      const cleaned = String(base64).replace(/^data:.*;base64,/, '').replace(/\s+/g, '')
-
-      // basic validation: must be base64-like
-      const maybeBase64 = /^[A-Za-z0-9+/]+=*$/.test(cleaned)
-      if(!maybeBase64) {
-        // throw but allow caller to try file-based upload instead
-        throw new Error('Invalid base64 data for image. Consider using a direct file upload.')
-      }
-
-      form.append('image', cleaned)
+  async function uploadToImgbb(src){
+    // Server-side endpoint accepts either a data URL or raw base64
+    let payload = { image: '' }
+    if(src instanceof File){
+      // convert to base64 then send
+      const b = await toBase64(src)
+      payload.image = String(b).replace(/^data:.*;base64,/, '')
+    } else if(typeof src === 'string'){
+      payload.image = String(src).replace(/^data:.*;base64,/, '')
     } else {
       throw new Error("Can't get target upload source info")
     }
 
-    const res = await fetch('https://api.imgbb.com/1/upload', { method:'POST', body: form })
-    let json
-    try{
-      json = await res.json()
-    }catch(e){
-      throw new Error('Invalid response from imgbb')
-    }
-
-    // imgbb returns { data: { url: '...' }, success: true }
-    if(!res.ok || !json || !json.data || !json.data.url){
-      // Include the full response in the error for easier debugging in dev
-      const msg = json?.error?.message || json?.status_message || JSON.stringify(json) || 'Upload failed'
-      throw new Error(msg)
-    }
-
-    return json.data.url
+    const res = await fetch('/api/imgbb', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+    const j = await res.json().catch(()=>null)
+    if(!res.ok) throw new Error(j?.error || 'Upload failed')
+    return j.url
   }
 
   async function submit(e){
