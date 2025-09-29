@@ -1,6 +1,18 @@
-import founders from '../../data/founders.json'
+"use client"
+import { useEffect, useState } from 'react'
 
 export default function Founders(){
+  const [founders, setFounders] = useState([])
+
+  useEffect(()=>{
+    let mounted = true
+    fetch('/api/founders')
+      .then(r=> r.json())
+      .then(data=>{ if(mounted) setFounders(Array.isArray(data)?data:[]) })
+      .catch(()=>{})
+    return ()=>{ mounted = false }
+  },[])
+
   return (
     <section id="founders" className="py-12">
       <div className="max-w-5xl mx-auto text-center mb-6">

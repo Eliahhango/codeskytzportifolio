@@ -1,19 +1,19 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-
-const dataPath = path.join(process.cwd(), 'data', 'portfolio.json')
-
-async function readData(){
-  try{ const raw = await fs.readFile(dataPath,'utf-8'); return JSON.parse(raw||'[]') }catch(e){ return [] }
-}
+import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from '../../../../lib/firebaseClient'
+import { db } from '../../../../lib/firebaseClient'
+import { adminDb, isAdmin } from '../../../../lib/firebaseAdmin'
 
 export async function GET(req, { params }){
   try{
     const id = params.id
-    const arr = await readData()
-    const item = arr.find(p=>p.id === id)
-    if(!item) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    return new Response(JSON.stringify(item), { status: 200 })
+    if(isAdmin && adminDb){
+      const snap = await adminDb.collection('projects').doc(id).get()
+      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
+    }
+    const dref = doc(db, 'projects', id)
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
   }catch(e){
     return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
   }
@@ -23,13 +23,20 @@ export async function PUT(req, { params }){
   try{
     const id = params.id
     const body = await req.json()
-    const arr = await readData()
-    const idx = arr.findIndex(p=>p.id === id)
-    if(idx === -1) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    const updated = { ...arr[idx], ...body }
-    arr[idx] = updated
-    await fs.writeFile(dataPath, JSON.stringify(arr, null, 2), 'utf-8')
-    return new Response(JSON.stringify(updated), { status: 200 })
+    if(isAdmin && adminDb){
+      const ref = adminDb.collection('projects').doc(id)
+      const docSnap = await ref.get()
+      if(!docSnap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      await ref.update({ ...body, updatedAt: new Date() })
+      const updated = await ref.get()
+      return new Response(JSON.stringify({ id: updated.id, ...updated.data() }), { status: 200 })
+    }
+    const dref = doc(db, 'projects', id)
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    await updateDoc(dref, { ...body, updatedAt: serverTimestamp() })
+    const updatedSnap = await getDoc(dref)
+    return new Response(JSON.stringify({ id: updatedSnap.id, ...updatedSnap.data() }), { status: 200 })
   }catch(e){
     return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
   }
@@ -38,12 +45,18 @@ export async function PUT(req, { params }){
 export async function DELETE(req, { params }){
   try{
     const id = params.id
-    const arr = await readData()
-    const idx = arr.findIndex(p=>p.id === id)
-    if(idx === -1) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    const removed = arr.splice(idx,1)[0]
-    await fs.writeFile(dataPath, JSON.stringify(arr, null, 2), 'utf-8')
-    return new Response(JSON.stringify({ ok: true, removed }), { status: 200 })
+    if(isAdmin && adminDb){
+      const ref = adminDb.collection('projects').doc(id)
+      const docSnap = await ref.get()
+      if(!docSnap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+      await ref.delete()
+      return new Response(JSON.stringify({ ok: true, id }), { status: 200 })
+    }
+    const dref = doc(db, 'projects', id)
+    const snap = await getDoc(dref)
+    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    await deleteDoc(dref)
+    return new Response(JSON.stringify({ ok: true, id }), { status: 200 })
   }catch(e){
     return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
   }

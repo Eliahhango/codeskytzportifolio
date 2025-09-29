@@ -1,31 +1,38 @@
-import { promises as fs } from 'fs'
-import path from 'path'
-
-const dataPath = path.join(process.cwd(), 'data', 'founders.json')
-
-async function readData(){
-  try{ const raw = await fs.readFile(dataPath,'utf-8'); return JSON.parse(raw||'[]') }catch(e){ return [] }
-}
+import { collection, addDoc, getDocs, serverTimestamp } from '../../../lib/firebaseClient'
+import { db } from '../../../lib/firebaseClient'
+import { adminDb, isAdmin } from '../../../lib/firebaseAdmin'
 
 export async function GET(){
-  const arr = await readData()
-  return new Response(JSON.stringify(arr), { status: 200 })
+  try{
+    if(isAdmin && adminDb){
+      const snap = await adminDb.collection('founders').get()
+      const arr = snap.docs.map(d=> ({ id: d.id, ...d.data() }))
+      return new Response(JSON.stringify(arr), { status: 200 })
+    }
+    const col = collection(db, 'founders')
+    const snap = await getDocs(col)
+    const arr = snap.docs.map(d=> ({ id: d.id, ...d.data() }))
+    return new Response(JSON.stringify(arr), { status: 200 })
+  }catch(e){
+    return new Response(JSON.stringify([]), { status: 200 })
+  }
 }
 
 export async function POST(req){
   try{
     const body = await req.json()
-    const arr = await readData()
-    const id = body.id || `f${Date.now()}`
-    // Normalize commonly used fields so frontend can read either shape
     const name = body.name || body.fullName || 'Unnamed'
     const position = body.position || body.role || ''
     const story = body.story || body.bio || ''
     const image = body.image || body.imageUrl || ''
-    const entry = { id, name, position, role: position, story, bio: story, image }
-    arr.push(entry)
-    await fs.writeFile(dataPath, JSON.stringify(arr, null, 2), 'utf-8')
-    return new Response(JSON.stringify(entry), { status: 201 })
+    const entry = { name, position, role: position, story, bio: story, image, createdAt: serverTimestamp() }
+    if(isAdmin && adminDb){
+      const docRef = await adminDb.collection('founders').add({ ...entry, createdAt: new Date() })
+      return new Response(JSON.stringify({ id: docRef.id, ...entry }), { status: 201 })
+    }
+    const col = collection(db, 'founders')
+    const docRef = await addDoc(col, entry)
+    return new Response(JSON.stringify({ id: docRef.id, ...entry }), { status: 201 })
   }catch(e){
     return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
   }

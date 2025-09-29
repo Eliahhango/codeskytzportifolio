@@ -1,19 +1,27 @@
 "use client"
 import { useEffect, useState } from 'react'
-import projects from '../../../data/portfolio.json'
 import Image from 'next/image'
 import Link from 'next/link'
 
-function getProject(id){
-  return projects.find(p=> p.id === id)
-}
-
 export default function ProjectPage({ params }){
   const { id } = params
-  const project = getProject(id)
-  if(!project) return <div className="p-8">Project not found</div>
+  const [project, setProject] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const gallery = [
+  useEffect(()=>{
+    let mounted = true
+    fetch(`/api/projects/${id}`)
+      .then(r=> r.json())
+      .then(data=>{ if(mounted) setProject(data) })
+      .catch(()=>{})
+      .finally(()=>{ if(mounted) setLoading(false) })
+    return ()=>{ mounted = false }
+  },[id])
+
+  if(loading) return <div className="p-8">Loading...</div>
+  if(!project || project.error) return <div className="p-8">Project not found</div>
+
+  const gallery = project.gallery && project.gallery.length ? project.gallery : [
     `/images/projects/${id}-1.jpg`,
     `/images/projects/${id}-2.jpg`,
     `/images/projects/${id}-3.jpg`
@@ -86,7 +94,7 @@ export default function ProjectPage({ params }){
             <div className="p-4 bg-white dark:bg-slate-900 rounded shadow">
               <h4 className="font-semibold">Project Details</h4>
               <p className="text-sm mt-2">Category: {project.category}</p>
-              <p className="text-sm mt-1">Tags: {project.tags.join(', ')}</p>
+              <p className="text-sm mt-1">Tags: {Array.isArray(project.tags)?project.tags.join(', '):''}</p>
               {project.live && <a href={project.live} target="_blank" rel="noreferrer" className="mt-3 block text-cyan underline">Open Live</a>}
             </div>
           </aside>
