@@ -1,30 +1,43 @@
-import fs from 'fs'
-import path from 'path'
-import { NextResponse } from 'next/server'
+import { query } from '../../../lib/db'
 import { rateLimit } from '../../../lib/rateLimit'
 
-const dataFile = path.join(process.cwd(), 'data', 'comments.json')
-
-function readComments(){
-  try{ return JSON.parse(fs.readFileSync(dataFile,'utf-8')) }catch(e){return []}
-}
-
 export async function GET(){
-  const comments = readComments()
-  return NextResponse.json({data:comments})
+  try {
+    const result = await query(
+      'SELECT * FROM comments ORDER BY created_at DESC'
+    )
+    return new Response(JSON.stringify({data: result.rows}), { status: 200 })
+  } catch (error) {
+    console.error('Comments GET error:', error)
+    return new Response(JSON.stringify({data: []}), { status: 200 })
+  }
 }
 
 export async function POST(req){
-  const body = await req.json()
-  const {name,email,rating,comment} = body
-  if(!name||!email||!comment) return NextResponse.json({error:'Missing fields'},{status:400})
+  try {
+    const body = await req.json()
+    const {name, email, rating, comment} = body
 
-  const rl = rateLimit('comments-'+(req.headers.get('x-forwarded-for')||'anon'), 50, 60)
-  if(rl.limited) return NextResponse.json({error:'Too many requests'},{status:429})
+    if(!name || !email || !comment) {
+      return new Response(JSON.stringify({error:'Missing fields'}), {status:400})
+    }
 
-  const comments = readComments()
-  const newC = {id:`c_${Date.now()}`,name,email,rating:rating||5,comment,date:new Date().toISOString().slice(0,10)}
-  comments.unshift(newC)
-  try{ fs.writeFileSync(dataFile,JSON.stringify(comments,null,2)) }catch(e){console.error(e)}
-  return NextResponse.json({data:newC},{status:201})
+    const rl = rateLimit('comments-'+(req.headers.get('x-forwarded-for')||'anon'), 50, 60)
+    if(rl.limited) {
+      return new Response(JSON.stringify({error:'Too many requests'}), {status:429})
+    }
+
+    const result = await query(
+      `INSERT INTO comments (name, rating, comment, date)
+       VALUES ($1, $2, $3, CURRENT_DATE)
+       RETURNING *`,
+      [name, rating || 5, comment]
+    )
+
+    const newComment = result.rows[0]
+    return new Response(JSON.stringify({data: newComment}), {status:201})
+  } catch (error) {
+    console.error('Comments POST error:', error)
+    return new Response(JSON.stringify({error: 'Internal server error'}), {status:500})
+  }
 }

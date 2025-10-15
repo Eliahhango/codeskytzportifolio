@@ -1,25 +1,37 @@
-import fs from 'fs'
-import path from 'path'
-import { NextResponse } from 'next/server'
-
-const dataFile = path.join(process.cwd(), 'data', 'ads.json')
-
-function readAds(){
-  try{ return JSON.parse(fs.readFileSync(dataFile,'utf-8')) }catch(e){return []}
-}
+import { query } from '../../../lib/db'
 
 export async function GET(){
-  const ads = readAds()
-  return NextResponse.json({data:ads})
+  try {
+    const result = await query(
+      'SELECT * FROM ads WHERE active = true ORDER BY created_at DESC'
+    )
+    return new Response(JSON.stringify({data: result.rows}), { status: 200 })
+  } catch (error) {
+    console.error('Ads GET error:', error)
+    return new Response(JSON.stringify({data: []}), { status: 200 })
+  }
 }
 
 export async function POST(req){
-  const body = await req.json()
-  const { url, alt } = body
-  if(!url) return NextResponse.json({error:'Missing url'},{status:400})
-  const ads = readAds()
-  const newA = { id: `ad_${Date.now()}`, url, alt: alt||'' }
-  ads.unshift(newA)
-  try{ fs.writeFileSync(dataFile,JSON.stringify(ads,null,2)) }catch(e){console.error(e)}
-  return NextResponse.json({data:newA},{status:201})
+  try {
+    const body = await req.json()
+    const { url, alt } = body
+
+    if(!url) {
+      return new Response(JSON.stringify({error:'Missing url'}), {status:400})
+    }
+
+    const result = await query(
+      `INSERT INTO ads (url, alt, active)
+       VALUES ($1, $2, $3)
+       RETURNING *`,
+      [url, alt || '', true]
+    )
+
+    const newAd = result.rows[0]
+    return new Response(JSON.stringify({data: newAd}), {status:201})
+  } catch (error) {
+    console.error('Ads POST error:', error)
+    return new Response(JSON.stringify({error: 'Internal server error'}), {status:500})
+  }
 }
