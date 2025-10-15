@@ -1,73 +1,90 @@
-import { doc, getDoc, updateDoc, deleteDoc, serverTimestamp } from '../../../../lib/firebaseClient'
-import { db } from '../../../../lib/firebaseClient'
-import { adminDb, isAdmin } from '../../../../lib/firebaseAdmin'
+import { query } from '../../../../lib/db'
 
 export async function GET(req, { params }){
   try{
-    if(isAdmin && adminDb){
-      const snap = await adminDb.collection('founders').doc(params.id).get()
-      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-      return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
+    const id = parseInt(params.id)
+    if (isNaN(id)) {
+      return new Response(JSON.stringify({ error: 'Invalid ID' }), { status: 400 })
     }
-    const dref = doc(db, 'founders', params.id)
-    const snap = await getDoc(dref)
-    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    return new Response(JSON.stringify({ id: snap.id, ...snap.data() }), { status: 200 })
-  }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
+
+    const result = await query(
+      'SELECT * FROM founders WHERE id = $1',
+      [id]
+    )
+
+    if (result.rows.length === 0) {
+      return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    }
+
+    return new Response(JSON.stringify(result.rows[0]), { status: 200 })
+  }catch(e){
+    console.error('Founder GET error:', e)
+    return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
+  }
 }
 
 export async function PUT(req, { params }){
   try{
-    const body = await req.json()
-    if(isAdmin && adminDb){
-      const ref = adminDb.collection('founders').doc(params.id)
-      const snap = await ref.get()
-      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-      const name = body.name || body.fullName || undefined
-      const position = body.position || body.role || undefined
-      const story = body.story || body.bio || undefined
-      const image = body.image || body.imageUrl || undefined
-      const payload = { ...body }
-      if(name) payload.name = name
-      if(position) payload.position = position
-      if(position) payload.role = position
-      if(story) payload.story = story
-      if(story) payload.bio = story
-      if(image) payload.image = image
-      payload.updatedAt = new Date()
-      await ref.update(payload)
-      const updated = await ref.get()
-      return new Response(JSON.stringify({ id: updated.id, ...updated.data() }), { status: 200 })
+    const id = parseInt(params.id)
+    if (isNaN(id)) {
+      return new Response(JSON.stringify({ error: 'Invalid ID' }), { status: 400 })
     }
-    const dref = doc(db, 'founders', params.id)
-    const body2 = await req.json()
-    const snap = await getDoc(dref)
-    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    // normalize fields on update
-    const name = body2.name || body2.fullName || snap.data().name
-    const position = body2.position || body2.role || snap.data().position || snap.data().role
-    const story = body2.story || body2.bio || snap.data().story || snap.data().bio
-    const image = body2.image || body2.imageUrl || snap.data().image
-    const updated = { ...snap.data(), ...body2, name, position, role: position, story, bio: story, image }
-    await updateDoc(dref, updated)
-    const updatedSnap = await getDoc(dref)
-    return new Response(JSON.stringify({ id: updatedSnap.id, ...updatedSnap.data() }), { status: 200 })
-  }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
+
+    const body = await req.json()
+
+    // First check if the founder exists
+    const checkResult = await query(
+      'SELECT * FROM founders WHERE id = $1',
+      [id]
+    )
+
+    if (checkResult.rows.length === 0) {
+      return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    }
+
+    // Update the founder
+    const updateFields = Object.keys(body).map((key, index) => `${key} = $${index + 2}`).join(', ')
+    const updateValues = Object.values(body)
+    updateValues.unshift(id)
+
+    const result = await query(
+      `UPDATE founders SET ${updateFields}, updated_at = CURRENT_TIMESTAMP WHERE id = $1 RETURNING *`,
+      updateValues
+    )
+
+    return new Response(JSON.stringify(result.rows[0]), { status: 200 })
+  }catch(e){
+    console.error('Founder PUT error:', e)
+    return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
+  }
 }
 
 export async function DELETE(req, { params }){
   try{
-    if(isAdmin && adminDb){
-      const ref = adminDb.collection('founders').doc(params.id)
-      const snap = await ref.get()
-      if(!snap.exists) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-      await ref.delete()
-      return new Response(JSON.stringify({ ok: true, id: params.id }), { status: 200 })
+    const id = parseInt(params.id)
+    if (isNaN(id)) {
+      return new Response(JSON.stringify({ error: 'Invalid ID' }), { status: 400 })
     }
-    const dref = doc(db, 'founders', params.id)
-    const snap = await getDoc(dref)
-    if(!snap.exists()) return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
-    await deleteDoc(dref)
-    return new Response(JSON.stringify({ ok: true, id: params.id }), { status: 200 })
-  }catch(e){ return new Response(JSON.stringify({ error: String(e) }), { status: 500 }) }
+
+    // First check if the founder exists
+    const checkResult = await query(
+      'SELECT * FROM founders WHERE id = $1',
+      [id]
+    )
+
+    if (checkResult.rows.length === 0) {
+      return new Response(JSON.stringify({ error: 'not found' }), { status: 404 })
+    }
+
+    // Delete the founder
+    await query(
+      'DELETE FROM founders WHERE id = $1',
+      [id]
+    )
+
+    return new Response(JSON.stringify({ ok: true, id }), { status: 200 })
+  }catch(e){
+    console.error('Founder DELETE error:', e)
+    return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
+  }
 }
