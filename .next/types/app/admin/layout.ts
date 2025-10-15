@@ -1,8 +1,8 @@
-// File: /home/sirtheprogrammer/Desktop/codeskytzportifolio/app/page.js
-import * as entry from '../../../app/page.js'
+// File: /home/sirtheprogrammer/Desktop/codeskytzportifolio/app/admin/layout.js
+import * as entry from '../../../../app/admin/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../app/page.js')
+type TEntry = typeof import('../../../../app/admin/layout.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
@@ -23,11 +23,11 @@ checkFields<Diff<{
 }, TEntry, ''>>()
 
 // Check the prop type of the entry function
-checkFields<Diff<PageProps, FirstArg<TEntry['default']>, 'default'>>()
+checkFields<Diff<LayoutProps, FirstArg<TEntry['default']>, 'default'>>()
 
 // Check the arguments and return type of the generateMetadata function
 if ('generateMetadata' in entry) {
-  checkFields<Diff<PageProps, FirstArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
+  checkFields<Diff<LayoutProps, FirstArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
   checkFields<Diff<ResolvingMetadata, SecondArg<MaybeField<TEntry, 'generateMetadata'>>, 'generateMetadata'>>()
 }
 
