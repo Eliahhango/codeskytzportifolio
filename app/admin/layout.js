@@ -8,3 +8,8 @@ export const metadata = {
 export default function Layout({ children }) {
   return <AdminLayout>{children}</AdminLayout>
 }
+
+// Hide main navbar on admin pages
+export const viewport = {
+  themeColor: '#081A2E',
+}
