@@ -4,6 +4,10 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {
+  faSun, faMoon, faCog, faTimes, faBars, faHome, faUsers,
+  faProjectDiagram, faComments, faUserTie, faEnvelope
+} from '@fortawesome/free-solid-svg-icons'
 
 export default function Navbar(){
   const [isAdmin, setIsAdmin] = useState(false)
@@ -153,7 +157,7 @@ export default function Navbar(){
               className="p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700 transition-all duration-200"
               aria-label="Toggle dark mode"
             >
-              <FontAwesomeIcon icon={darkMode ? 'sun' : 'moon'} className="text-lg" />
+              <FontAwesomeIcon icon={darkMode ? faSun : faMoon} className="text-lg" />
             </button>
 
             {/* Admin Link - Only show if user is admin */}
@@ -162,7 +166,7 @@ export default function Navbar(){
                 href="/admin"
                 className="hidden sm:inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-cyan text-white font-semibold rounded-lg hover:from-primary/90 hover:to-cyan/90 transition-all duration-200 shadow-lg hover:shadow-xl"
               >
-                <FontAwesomeIcon icon="cog" className="mr-2" />
+                <FontAwesomeIcon icon={faCog} className="mr-2" />
                 <span>Admin</span>
               </Link>
             )}
@@ -173,7 +177,7 @@ export default function Navbar(){
               className="lg:hidden p-2 rounded-lg bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700 transition-all duration-200"
               aria-label="Toggle mobile menu"
             >
-              <FontAwesomeIcon icon={open ? 'times' : 'bars'} className="text-lg" />
+              <FontAwesomeIcon icon={open ? faTimes : faBars} className="text-lg" />
             </button>
           </div>
         </div>
@@ -205,13 +209,13 @@ export default function Navbar(){
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <FontAwesomeIcon icon={
-                  item.name === 'Home' ? 'home' :
-                  item.name === 'About' ? 'users' :
-                  item.name === 'Services' ? 'cog' :
-                  item.name === 'Portfolio' ? 'project-diagram' :
-                  item.name === 'Reviews' ? 'comments' :
-                  item.name === 'Founders' ? 'user-tie' :
-                  'envelope'
+                  item.name === 'Home' ? faHome :
+                  item.name === 'About' ? faUsers :
+                  item.name === 'Services' ? faCog :
+                  item.name === 'Portfolio' ? faProjectDiagram :
+                  item.name === 'Reviews' ? faComments :
+                  item.name === 'Founders' ? faUserTie :
+                  faEnvelope
                 } className="mr-3" />
                 {item.name}
               </Link>
@@ -225,7 +229,7 @@ export default function Navbar(){
               className="block px-4 py-3 bg-gradient-to-r from-primary to-cyan text-white font-semibold rounded-lg hover:from-primary/90 hover:to-cyan/90 transition-all duration-200 shadow-lg text-center mt-4"
               onClick={() => setOpen(false)}
             >
-              <FontAwesomeIcon icon="cog" className="mr-2" />
+              <FontAwesomeIcon icon={faCog} className="mr-2" />
               Admin Panel
             </Link>
           )}
