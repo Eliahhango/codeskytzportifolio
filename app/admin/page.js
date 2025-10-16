@@ -28,6 +28,8 @@ export default function AdminLogin(){
       if (response.ok && data.success) {
         // Store session token
         sessionStorage.setItem('admin_token', data.token)
+        // Dispatch custom event to notify AdminProvider of auth change
+        window.dispatchEvent(new Event('admin-auth-update'))
         router.push('/admin/dashboard')
       } else {
         setErr(data.error || 'Invalid credentials')
@@ -49,7 +51,7 @@ export default function AdminLogin(){
                 <span className="text-white font-bold text-xl">CS</span>
               </div>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white">Admin Login</h2>
-              <p className="text-gray-600 dark:text-gray-400 mt-2">Access the Codesky admin dashboard</p>
+              <p className="text-gray-600 dark:text-gray-400 mt-2">Access the Codeskytz admin dashboard</p>
             </div>
 
             <form onSubmit={submit} className="space-y-6">
@@ -99,7 +101,7 @@ export default function AdminLogin(){
 
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                Codesky Admin Portal
+                Codeskytz Admin Portal
               </p>
             </div>
           </div>

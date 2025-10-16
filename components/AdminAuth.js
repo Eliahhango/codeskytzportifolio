@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AdminAuth() {
   const [username, setUsername] = useState('');
@@ -55,12 +55,12 @@ export default function AdminAuth() {
   };
 
   // Check if user is logged in on component mount
-  useState(() => {
+  useEffect(() => {
     const token = sessionStorage.getItem('admin_token');
     if (token) {
       try {
         const payload = JSON.parse(atob(token));
-        if (payload.exp > Date.now()) {
+        if (payload.exp > Date.now() && payload.admin) {
           setIsLoggedIn(true);
         } else {
           sessionStorage.removeItem('admin_token');
@@ -69,7 +69,7 @@ export default function AdminAuth() {
         sessionStorage.removeItem('admin_token');
       }
     }
-  });
+  }, []);
 
   if (isLoading) {
     return <div className="p-4">Loading...</div>;

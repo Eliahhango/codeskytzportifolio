@@ -68,7 +68,7 @@ export default function AdminContacts() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <FontAwesomeIcon icon="cog" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
+          <FontAwesomeIcon icon="gears" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400">Loading...</p>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function AdminContacts() {
       {/* Contacts List */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <FontAwesomeIcon icon="cog" className="animate-spin text-2xl text-cyan" />
+          <FontAwesomeIcon icon="gears" className="animate-spin text-2xl text-cyan" />
         </div>
       ) : (
         <>

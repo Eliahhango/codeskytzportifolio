@@ -24,7 +24,7 @@ const navigation = [
   { name: 'Comments', href: '/admin/comments', icon: 'comments' },
   { name: 'Contact Forms', href: '/admin/contacts', icon: 'mail-bulk' },
   { name: 'Ads Management', href: '/admin/ads', icon: 'bullhorn' },
-  { name: 'Settings', href: '/admin/settings', icon: 'cog' },
+  { name: 'Settings', href: '/admin/settings', icon: 'gears' },
 ]
 
 export default function AdminDashboard(){
@@ -87,7 +87,7 @@ export default function AdminDashboard(){
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-slate-900">
         <div className="text-center">
-          <FontAwesomeIcon icon="cog" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
+          <FontAwesomeIcon icon="gears" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400">Loading admin dashboard...</p>
         </div>
       </div>
@@ -121,7 +121,7 @@ export default function AdminDashboard(){
                 <span className="text-white font-bold text-lg">CS</span>
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Codesky Admin</h2>
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Codeskytz Admin</h2>
                 <p className="text-sm text-gray-600 dark:text-gray-400">Management Portal</p>
               </div>
             </div>
@@ -156,6 +156,23 @@ export default function AdminDashboard(){
                 <FontAwesomeIcon icon="home" className="text-lg" />
                 <span className="hidden sm:inline">Back to Site</span>
               </Link>
+              <button
+                onClick={async () => {
+                  try {
+                    await fetch('/api/admin/auth', { method: 'DELETE' })
+                  } catch (error) {
+                    console.error('Logout error:', error)
+                  } finally {
+                    sessionStorage.removeItem('admin_token')
+                    window.dispatchEvent(new Event('admin-auth-update'))
+                    window.location.href = '/admin'
+                  }
+                }}
+                className="flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-medium text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+              >
+                <FontAwesomeIcon icon="sign-out-alt" className="text-lg" />
+                <span className="hidden sm:inline">Logout</span>
+              </button>
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-cyan rounded-full flex items-center justify-center">
                 <FontAwesomeIcon icon="user" className="text-white text-sm" />
               </div>
@@ -192,7 +209,7 @@ export default function AdminDashboard(){
         {/* Dashboard Header */}
         <div className="bg-gradient-to-r from-primary to-cyan rounded-lg p-6 text-white mb-6">
           <h1 className="text-3xl font-bold mb-2">Admin Dashboard</h1>
-          <p className="text-lg opacity-90">Welcome to the Codesky management portal</p>
+          <p className="text-lg opacity-90">Welcome to the Codeskytz management portal</p>
         </div>
 
         {/* Stats Cards */}

@@ -94,13 +94,13 @@ export default function AboutUs({ className = "" }) {
             <div className={`mb-4 ${mounted ? "" : "opacity-0"}`}>
               <p className="text-sm font-semibold text-indigo-400">About</p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900 dark:text-white">
-                Codesky
+                Codeskytz
               </h1>
               <p className="mt-2 text-lg text-gray-600 dark:text-gray-300">Innovation With No Limit</p>
             </div>
 
             <p className={`mt-6 text-gray-700 dark:text-gray-200 max-w-prose ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"} transition-all duration-700`}> 
-              Codesky is a multidisciplinary engineering studio specializing in web development, system security, AI solutions, WhatsApp bot automation and robust API services. We blend creativity with discipline to build scalable, secure and delightful digital products.
+              Codeskytz is a multidisciplinary engineering studio specializing in web development, system security, AI solutions, WhatsApp bot automation and robust API services. We blend creativity with discipline to build scalable, secure and delightful digital products.
             </p>
 
             {/* Mission & Vision */}
@@ -156,7 +156,7 @@ export default function AboutUs({ className = "" }) {
             {/* Company story */}
             <div className="mt-8">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white">Our Story</h4>
-              <p className="mt-3 text-gray-700 dark:text-gray-300 max-w-prose">Founded by a small group of engineers with a shared love for craftsmanship, Codesky started as a web development studio and quickly expanded into security, AI and automation. Today we focus on building ethical, reliable systems and aiming to be a trusted partner as businesses embrace modern technology.</p>
+              <p className="mt-3 text-gray-700 dark:text-gray-300 max-w-prose">Founded by a small group of engineers with a shared love for craftsmanship, Codeskytz started as a web development studio and quickly expanded into security, AI and automation. Today we focus on building ethical, reliable systems and aiming to be a trusted partner as businesses embrace modern technology.</p>
             </div>
 
             {/* Team CTA */}

@@ -6,7 +6,7 @@ export async function GET(){
     const result = await query(
       'SELECT * FROM comments ORDER BY created_at DESC'
     )
-    return new Response(JSON.stringify({data: result.rows}), { status: 200 })
+    return new Response(JSON.stringify(result.rows), { status: 200 })
   } catch (error) {
     console.error('Comments GET error:', error)
     return new Response(JSON.stringify({data: []}), { status: 200 })

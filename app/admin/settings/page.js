@@ -101,7 +101,7 @@ export default function AdminSettings() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <FontAwesomeIcon icon="cog" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
+          <FontAwesomeIcon icon="gears" className="animate-spin text-4xl text-cyan mx-auto mb-4" />
           <p className="text-gray-600 dark:text-gray-400">Loading...</p>
         </div>
       </div>
@@ -375,7 +375,7 @@ export default function AdminSettings() {
               disabled={loading}
               className="px-6 py-3 bg-gradient-to-r from-cyan to-blue-600 text-white rounded-lg hover:from-cyan/90 hover:to-blue-600/90 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
             >
-              {loading && <FontAwesomeIcon icon="cog" className="animate-spin h-4 w-4" />}
+              {loading && <FontAwesomeIcon icon="gears" className="animate-spin h-4 w-4" />}
               <span>{loading ? 'Saving...' : 'Save Settings'}</span>
             </button>
           </div>
