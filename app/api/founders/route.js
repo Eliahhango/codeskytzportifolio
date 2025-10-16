@@ -31,6 +31,9 @@ export async function POST(req){
     return new Response(JSON.stringify(created), { status: 201 })
   }catch(e){
     console.error('Founders POST error:', e)
-    return new Response(JSON.stringify({ error: String(e) }), { status: 500 })
+    if (e.code === '23505') { // duplicate key error
+      return new Response(JSON.stringify({ error: 'Founder already exists or data conflict' }), { status: 409 })
+    }
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500 })
   }
 }

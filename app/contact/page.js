@@ -1,6 +1,6 @@
 "use client"
 import { useForm } from 'react-hook-form'
-import foundersData from '../../data/founders.json'
+import { useEffect, useState } from 'react'
 import { WhatsappLogo } from '../../lib/serviceLogos'
 import { FontAwesomeIcon } from '../../lib/icons'
 
@@ -10,6 +10,39 @@ function EmailIcon(){
 
 export default function Contact(){
   const {register,handleSubmit,formState:{errors}} = useForm()
+  const [staff, setStaff] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    let mounted = true
+    async function loadFounders() {
+      setLoading(true)
+      try {
+        const res = await fetch('/api/founders')
+        const data = await res.json()
+        if (mounted) {
+          const foundersArray = Array.isArray(data) ? data : []
+          // canonicalize founders data (some entries use position/story)
+          const processedStaff = foundersArray.map(f=>({
+            id: f.id,
+            name: f.name || f.fullName || 'Unnamed',
+            role: f.role || f.position || 'Staff',
+            bio: f.bio || f.story || '',
+            image: f.image || f.imageUrl || '/images/placeholder.png',
+            social: f.social || {}
+          }))
+          setStaff(processedStaff)
+        }
+      } catch (error) {
+        console.error('Error loading founders:', error)
+        if (mounted) setStaff([])
+      } finally {
+        if (mounted) setLoading(false)
+      }
+    }
+    loadFounders()
+    return () => { mounted = false }
+  }, [])
 
   const onSubmit = async (data)=>{
     try{
@@ -20,16 +53,6 @@ export default function Contact(){
       alert('Failed to send')
     }
   }
-
-  // canonicalize founders data (some entries use position/story)
-  const staff = (Array.isArray(foundersData) ? foundersData : []).map(f=>({
-    id: f.id,
-    name: f.name,
-    role: f.role || f.position || 'Staff',
-    bio: f.bio || f.story || '',
-    image: f.image,
-    social: f.social || {}
-  }))
 
   // replace these with your real company links
   const companySocial = {
@@ -87,7 +110,11 @@ export default function Contact(){
         <aside className="col-span-1">
           <h3 className="font-semibold mb-3">Our Team</h3>
           <ul className="space-y-3">
-            {staff.map(s=> (
+            {loading ? (
+              <li className="flex items-center justify-center p-6">
+                <FontAwesomeIcon icon="gears" className="animate-spin text-2xl text-cyan" />
+              </li>
+            ) : staff.map(s=> (
               <li key={s.id} className="flex flex-col sm:flex-row items-start gap-3 p-3 border rounded">
                 <img src={s.image} alt={s.name} className="w-14 h-14 rounded-full object-cover" />
                 <div className="flex-1 text-left">

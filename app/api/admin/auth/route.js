@@ -14,6 +14,7 @@ export async function POST(req) {
       // Create a simple session token (in production, use proper JWT)
       const sessionToken = Buffer.from(JSON.stringify({
         admin: true,
+        username: username,
         exp: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
       })).toString('base64')
 

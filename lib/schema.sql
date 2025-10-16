@@ -37,13 +37,17 @@ CREATE TABLE IF NOT EXISTS founders (
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- Ads table (for the hero carousel)
+-- Ads table (for advertisements and banners)
 CREATE TABLE IF NOT EXISTS ads (
   id SERIAL PRIMARY KEY,
-  url TEXT NOT NULL,
-  alt TEXT DEFAULT '',
+  title VARCHAR(255) NOT NULL,
+  description TEXT DEFAULT '',
+  image_url TEXT NOT NULL,
+  link_url TEXT DEFAULT '',
+  position VARCHAR(100) DEFAULT 'general',
   active BOOLEAN DEFAULT true,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Contact submissions table
@@ -62,6 +66,7 @@ CREATE INDEX IF NOT EXISTS idx_projects_created_at ON projects(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_comments_date ON comments(date DESC);
 CREATE INDEX IF NOT EXISTS idx_founders_name ON founders(name);
 CREATE INDEX IF NOT EXISTS idx_ads_active ON ads(active);
+CREATE INDEX IF NOT EXISTS idx_ads_position ON ads(position);
 CREATE INDEX IF NOT EXISTS idx_contact_status ON contact_submissions(status);
 
 -- Create updated_at trigger function
@@ -76,6 +81,7 @@ $$ language 'plpgsql';
 -- Create triggers for updated_at
 CREATE TRIGGER update_projects_updated_at BEFORE UPDATE ON projects FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 CREATE TRIGGER update_founders_updated_at BEFORE UPDATE ON founders FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER update_ads_updated_at BEFORE UPDATE ON ads FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 -- Create updated_at trigger function
 CREATE OR REPLACE FUNCTION update_updated_at_column()

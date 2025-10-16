@@ -14,7 +14,7 @@ export default function Reviews(){
         const r = await fetch('/api/comments')
         const j = await r.json()
         if(!mounted) return
-        setComments(j.data||[])
+        setComments(Array.isArray(j) ? j : [])
       }catch(e){
         console.error(e)
       }finally{
@@ -36,7 +36,7 @@ export default function Reviews(){
       const res = await fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
       if(res.ok){
         const j = await res.json()
-        setComments(c=>[j.data,...c.filter(x=>x.id!==tmp.id)])
+        setComments(c=>[j,...c.filter(x=>x.id!==tmp.id)])
       }
     }catch(e){
       console.error(e)
