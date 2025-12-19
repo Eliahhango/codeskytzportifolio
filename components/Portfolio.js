@@ -1,275 +1,170 @@
-"use client"
+'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState, useEffect } from 'react'
+import { FiExternalLink, FiGithub } from 'react-icons/fi'
+import { getProjects } from '@/lib/services/projectsService'
 
-export default function Portfolio(){
-  const [projects, setProjects] = useState([])
-  const [filteredProjects, setFilteredProjects] = useState([])
+// Default projects for fallback
+const defaultProjects = [
+  {
+    title: 'E-Commerce Platform',
+    description: 'Full-stack e-commerce solution with payment integration and admin dashboard.',
+    tech: ['Next.js', 'Node.js', 'PostgreSQL'],
+    image: 'bg-blue-200',
+  },
+  {
+    title: 'Task Management App',
+    description: 'Collaborative task management tool with real-time updates and notifications.',
+    tech: ['React', 'Firebase', 'TypeScript'],
+    image: 'bg-green-200',
+  },
+  {
+    title: 'Analytics Dashboard',
+    description: 'Data visualization dashboard with interactive charts and reporting features.',
+    tech: ['Vue.js', 'Python', 'MongoDB'],
+    image: 'bg-purple-200',
+  },
+  {
+    title: 'Mobile Banking App',
+    description: 'Secure mobile banking application with biometric authentication.',
+    tech: ['React Native', 'Node.js', 'MySQL'],
+    image: 'bg-orange-200',
+  },
+  {
+    title: 'SaaS Platform',
+    description: 'Subscription-based SaaS platform with multi-tenant architecture.',
+    tech: ['Next.js', 'AWS', 'DynamoDB'],
+    image: 'bg-red-200',
+  },
+  {
+    title: 'IoT Dashboard',
+    description: 'Real-time IoT device monitoring and control dashboard.',
+    tech: ['React', 'MQTT', 'InfluxDB'],
+    image: 'bg-yellow-200',
+  },
+]
+
+export default function Portfolio() {
+  const [projects, setProjects] = useState(defaultProjects)
   const [loading, setLoading] = useState(true)
-  const [mounted, setMounted] = useState(false)
-  const [activeFilter, setActiveFilter] = useState('all')
-  const [searchTerm, setSearchTerm] = useState('')
 
   useEffect(() => {
-    setMounted(true)
-    let mounted = true
-    setLoading(true)
-    fetch('/api/projects')
-      .then(r=> r.json())
-      .then(data=>{
-        if(mounted) {
-          const projectsArray = Array.isArray(data) ? data : []
-          setProjects(projectsArray)
-          setFilteredProjects(projectsArray)
-          setLoading(false)
+    const fetchProjects = async () => {
+      try {
+        const result = await getProjects()
+        if (result.success && result.data.length > 0) {
+          setProjects(result.data)
         }
-      })
-      .catch(()=>{
-        if(mounted) setLoading(false)
-      })
-    return ()=>{ mounted = false }
-  },[])
-
-  useEffect(() => {
-    let filtered = projects
-
-    // Apply category filter
-    if (activeFilter !== 'all') {
-      filtered = filtered.filter(p => p.category === activeFilter)
+      } catch (error) {
+        console.error('Error fetching projects:', error)
+      } finally {
+        setLoading(false)
+      }
     }
 
-    // Apply search filter
-    if (searchTerm) {
-      filtered = filtered.filter(p =>
-        p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (p.tags && p.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())))
-      )
-    }
-
-    setFilteredProjects(filtered)
-  }, [projects, activeFilter, searchTerm])
-
-  const categories = [
-    { id: 'all', name: 'All Projects', icon: 'grid-2' },
-    { id: 'web', name: 'Web Development', icon: 'laptop-code' },
-    { id: 'mobile', name: 'Mobile Apps', icon: 'mobile-alt' },
-    { id: 'ai', name: 'AI Solutions', icon: 'robot' },
-    { id: 'security', name: 'Security', icon: 'shield-alt' }
-  ]
-
+    fetchProjects()
+  }, [])
   return (
-    <section id="portfolio" className="py-16 lg:py-24 bg-white dark:bg-slate-900">
-      <div className="w-full mx-auto px-6 lg:px-8">
-        {/* Header */}
-        <div className={`text-center mb-16 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700`}>
-          <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan/10 to-primary/10 rounded-full border border-cyan/20 mb-6">
-            <FontAwesomeIcon icon="rocket" className="text-cyan mr-2" />
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Our Portfolio</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="text-gray-900 dark:text-white">Featured </span>
-            <span className="bg-gradient-to-r from-primary to-cyan bg-clip-text text-transparent">Projects</span>
+    <section id="portfolio" className="w-full bg-white/80 dark:bg-gray-900/90 dark:backdrop-blur-md backdrop-blur-sm py-20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            Our Portfolio
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Discover our latest innovations and success stories. Each project represents our commitment to excellence and cutting-edge solutions.
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Showcasing our latest projects and successful implementations
           </p>
         </div>
-
-        {/* Filters and Search */}
-        <div className={`mb-12 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-200`}>
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-8">
-            <div className="relative">
-              <FontAwesomeIcon icon="search" className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search projects..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-cyan focus:border-transparent transition-all duration-200"
-              />
-            </div>
-          </div>
-
-          {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveFilter(category.id)}
-                className={`inline-flex items-center px-6 py-3 rounded-xl font-medium transition-all duration-200 ${
-                  activeFilter === category.id
-                    ? 'bg-gradient-to-r from-primary to-cyan text-white shadow-lg scale-105'
-                    : 'bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700 hover:scale-105'
-                }`}
-              >
-                <FontAwesomeIcon icon={category.icon} className="mr-2" />
-                <span>{category.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Loading State */}
+        
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="text-center space-y-4">
-              <FontAwesomeIcon icon="gears" className="animate-spin text-4xl text-cyan" />
-              <p className="text-gray-600 dark:text-gray-400">Loading projects...</p>
-            </div>
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-400 text-lg">Loading projects...</p>
           </div>
         ) : (
-          <>
-            {/* Results Info */}
-            <div className={`text-center mb-8 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-300`}>
-              <p className="text-gray-600 dark:text-gray-400">
-                Showing {filteredProjects.length} of {projects.length} projects
-                {searchTerm && ` for "${searchTerm}"`}
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => {
+              // Check if image is a URL or a Tailwind class
+              const isImageUrl = project.image && (
+                project.image.startsWith('http://') ||
+                project.image.startsWith('https://') ||
+                project.image.startsWith('/')
+              )
+              const imageClass = !isImageUrl ? (project.image || 'bg-blue-200') : ''
+              const imageUrl = isImageUrl ? project.image : null
 
-            {/* Projects Grid */}
-            {filteredProjects.length === 0 ? (
-              <div className="text-center py-20">
-                <div className="space-y-4">
-                  <FontAwesomeIcon icon="search" className="text-6xl text-gray-300 dark:text-gray-600" />
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">No projects found</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {searchTerm ? 'Try adjusting your search terms or filters.' : 'No projects match the selected category.'}
-                  </p>
-                  {searchTerm && (
-                    <button
-                      onClick={() => setSearchTerm('')}
-                      className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-primary to-cyan text-white font-semibold rounded-lg hover:from-primary/90 hover:to-cyan/90 transition-all duration-200"
-                    >
-                      <FontAwesomeIcon icon="times" className="mr-2" />
-                      Clear Search
-                    </button>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredProjects.map((project, index) => (
-                  <article
-                    key={project.id}
-                    className={`group relative ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
+              return (
+                <div
+                  key={project.id || index}
+                  className="bg-white dark:bg-gray-800/95 dark:border-gray-600/50 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden hover:shadow-xl dark:hover:shadow-blue-500/20 transition-shadow duration-200"
+                >
+                  <div
+                    className={`${imageClass} h-48 flex items-center justify-center relative`}
+                    style={
+                      imageUrl
+                        ? {
+                            backgroundImage: `url(${imageUrl})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                          }
+                        : {}
+                    }
                   >
-                    {/* Project Card */}
-                    <div className="relative bg-white dark:bg-slate-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-2 border border-gray-200 dark:border-gray-700">
-                      {/* Image Container */}
-                      <div className="relative w-full h-56 overflow-hidden">
-                        {project.front_image ? (
-                          <img
-                            src={project.front_image}
-                            alt={project.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full bg-gradient-to-br from-primary to-cyan flex items-center justify-center">
-                            <FontAwesomeIcon icon="project-diagram" className="text-white text-4xl" />
-                          </div>
-                        )}
-
-                        {/* Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                        {/* Status Badge */}
-                        {project.live_url && (
-                          <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">
-                            Live
-                          </div>
-                        )}
-
-                        {/* Category Badge */}
-                        {project.category && (
-                          <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm text-gray-900 text-xs font-semibold rounded-full capitalize">
-                            {project.category}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Content */}
-                      <div className="p-6">
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors duration-200">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3">
-                          {project.summary}
-                        </p>
-
-                        {/* Tags */}
-                        {project.tags && project.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-6">
-                            {project.tags.slice(0, 3).map((tag, idx) => (
-                              <span
-                                key={idx}
-                                className="px-3 py-1 text-xs bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 rounded-full"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                            {project.tags.length > 3 && (
-                              <span className="px-3 py-1 text-xs bg-cyan/10 text-cyan rounded-full">
-                                +{project.tags.length - 3} more
-                              </span>
-                            )}
-                          </div>
-                        )}
-
-                        {/* Actions */}
-                        <div className="flex gap-3">
-                          <Link
-                            href={`/portfolio/${project.id}`}
-                            className="flex-1 inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-primary to-cyan text-white font-semibold rounded-lg hover:from-primary/90 hover:to-cyan/90 transition-all duration-200 group-hover:shadow-lg"
-                          >
-                            <span>Explore</span>
-                            <FontAwesomeIcon icon="arrow-right" className="ml-2 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                          {project.live_url && (
-                            <a
-                              href={project.live_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center justify-center px-4 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:border-primary hover:text-primary transition-all duration-200"
-                            >
-                              <FontAwesomeIcon icon="external-link-alt" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
+                    {imageUrl && (
+                      <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+                    )}
+                    <div className="text-6xl font-bold text-gray-700 dark:text-gray-500 opacity-30 dark:opacity-20 relative z-10">
+                      {project.title.charAt(0)}
                     </div>
-                  </article>
-                ))}
-              </div>
-            )}
-          </>
-        )}
-
-        {/* Bottom CTA */}
-        {!loading && filteredProjects.length > 0 && (
-          <div className={`text-center mt-16 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} transition-all duration-700 delay-500`}>
-            <div className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Ready to Start Your Project?</h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                Let's discuss your requirements and build something amazing together. Our team is ready to bring your vision to life.
-              </p>
-              <Link
-                href="/contact"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-cyan text-white font-semibold rounded-xl hover:from-primary/90 hover:to-cyan/90 focus:ring-2 focus:ring-cyan focus:ring-offset-2 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                <FontAwesomeIcon icon="rocket" className="mr-2" />
-                <span>Start Your Project</span>
-              </Link>
-            </div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {(project.tech || []).map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="bg-ocean-blue dark:bg-blue-600 dark:text-blue-100 text-white text-sm px-3 py-1 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-ocean-blue dark:text-blue-400 hover:text-ocean-blue-dark dark:hover:text-blue-300 flex items-center gap-2 font-medium"
+                        >
+                          <FiExternalLink />
+                          View Project
+                        </a>
+                      )}
+                      {project.codeLink && (
+                        <a
+                          href={project.codeLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 flex items-center gap-2 font-medium"
+                        >
+                          <FiGithub />
+                          Code
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>
     </section>
   )
 }
+

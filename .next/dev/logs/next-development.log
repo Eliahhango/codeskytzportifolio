@@ -1,0 +1,586 @@
+[00:00:02.563] Server  LOG      ✓ Ready in 1920ms
+[00:00:36.952] Server  LOG      ○ Compiling / ...
+[00:00:38.460] Server  ERROR    ⨯ ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+
+
+[00:00:42.116] Browser ERROR   uncaughtError: Error: ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+
+
+[00:00:42.531] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:00:43.196] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:01:24.140] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:01:25.907] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    [at lt (/home/anonynoman/Desktop/codeskytzportifolio/node_modules/tailwindcss/dist/lib.js:38:1643)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:56:14)]
+    [at <anonymous>]
+    [at Module.init (turbopack:///[turbopack-node]/transforms/postcss.ts:43:33)]
+    [at run (turbopack:///[turbopack-node]/ipc/evaluate.ts:77:20)]
+    [at process.processTicksAndRejections (node:internal/process/task_queues:103:5)]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:01:31.771] Server  LOG      ✓ Compiled in 2.3s
+[00:01:34.716] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:42.126] Server  LOG      ✓ Compiled in 345ms
+[00:02:42.313] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: Cannot find module '@tailwindcss/postcss'
+Require stack:
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[root-of-the-server]__6d51cb5d._.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[turbopack]_runtime.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/postcss.js
+    [at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)]
+    [at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)]
+    [at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)]
+    [at Module._load (node:internal/modules/cjs/loader:1226:37)]
+    [at TracingChannel.traceSync (node:diagnostics_channel:328:14)]
+    [at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)]
+    [at Module.require (node:internal/modules/cjs/loader:1503:12)]
+    [at require (node:internal/modules/helpers:152:16)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:49:25)]
+    [at <anonymous>]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:02:59.238] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: Cannot find module '@tailwindcss/postcss'
+Require stack:
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[root-of-the-server]__6d51cb5d._.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[turbopack]_runtime.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/postcss.js
+    [at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)]
+    [at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)]
+    [at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)]
+    [at Module._load (node:internal/modules/cjs/loader:1226:37)]
+    [at TracingChannel.traceSync (node:diagnostics_channel:328:14)]
+    [at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)]
+    [at Module.require (node:internal/modules/cjs/loader:1503:12)]
+    [at require (node:internal/modules/helpers:152:16)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:49:25)]
+    [at <anonymous>]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:03:01.705] Browser ERROR   ./app/globals.css
+Error evaluating Node.js code
+Error: Cannot find module '@tailwindcss/postcss'
+Require stack:
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[root-of-the-server]__6d51cb5d._.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/chunks/[turbopack]_runtime.js
+- /home/anonynoman/Desktop/codeskytzportifolio/.next/dev/build/postcss.js
+    [at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)]
+    [at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)]
+    [at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)]
+    [at Module._load (node:internal/modules/cjs/loader:1226:37)]
+    [at TracingChannel.traceSync (node:diagnostics_channel:328:14)]
+    [at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)]
+    [at Module.require (node:internal/modules/cjs/loader:1503:12)]
+    [at require (node:internal/modules/helpers:152:16)]
+    [at <anonymous> (turbopack:///[turbopack-node]/transforms/postcss.ts:49:25)]
+    [at <anonymous>]
+
+Import trace:
+  Client Component Browser:
+    ./app/globals.css [Client Component Browser]
+    ./app/layout.js [Server Component]
+[00:16:28.026] Server  LOG      ✓ Compiled in 85ms
+[00:16:36.867] Server  LOG      ✓ Compiled in 260ms
+[00:16:47.542] Server  LOG      ✓ Compiled in 212ms
+[00:16:59.627] Server  LOG      ✓ Compiled in 149ms
+[00:17:07.820] Server  LOG      ✓ Compiled in 227ms
+[00:17:24.532] Server  LOG      ✓ Compiled in 125ms
+[00:17:34.953] Server  LOG      ✓ Compiled in 140ms
+[00:17:54.693] Server  LOG      ✓ Compiled in 4.6s
+[00:18:04.520] Server  LOG      ✓ Compiled in 971ms
+[00:18:13.029] Server  LOG      ✓ Compiled in 464ms
+[00:20:53.193] Server  LOG      ✓ Compiled in 312ms
+[00:21:11.480] Server  LOG      ✓ Compiled in 148ms
+[00:21:18.593] Server  LOG      ✓ Compiled in 141ms
+[00:21:37.468] Server  LOG      ✓ Compiled in 195ms
+[00:32:51.442] Server  LOG      ✓ Compiled in 7s
+[00:34:12.442] Server  WARN    [2025-12-19T00:20:22.148Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Listen' stream 0x720f8e74 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Cloud Firestore API has not been used in project codeskytz-app before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=codeskytz-app then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+[00:34:12.451] Server  ERROR   [2025-12-19T00:20:22.159Z]  @firebase/firestore: "Firestore (12.6.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Cloud Firestore API has not been used in project codeskytz-app before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=codeskytz-app then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend."
+[00:34:30.962] Server  WARN    [2025-12-19T00:20:40.670Z]  @firebase/firestore: "Firestore (12.6.0): GrpcConnection" "RPC 'Listen' stream 0x4219f3f1 error. Code:" "7" "Message:" "7 PERMISSION_DENIED: Cloud Firestore API has not been used in project codeskytz-app before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=codeskytz-app then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry."
+[00:34:30.969] Server  ERROR   [2025-12-19T00:20:40.674Z]  @firebase/firestore: "Firestore (12.6.0): Could not reach Cloud Firestore backend. Connection failed 1 times. Most recent error: FirebaseError: [code=permission-denied]: 7 PERMISSION_DENIED: Cloud Firestore API has not been used in project codeskytz-app before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/firestore.googleapis.com/overview?project=codeskytz-app then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.\nThis typically indicates that your device does not have a healthy Internet connection at the moment. The client will operate in offline mode until it is able to successfully connect to the backend."
+[00:34:32.592] Server  LOG      ✓ Compiled in 4ms
+[00:35:01.914] Server  LOG      ✓ Compiled in 275ms
+[00:39:58.501] Server  ERROR   Error fetching carousel ads: FirebaseError: [code=permission-denied]: Missing or insufficient permissions.
+[00:40:00.284] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:02.852] Browser ERROR   Error fetching projects: {"code":"permission-denied","name":"FirebaseError"}
+[00:42:11.885] Server  ERROR   Error fetching carousel ads: FirebaseError: [code=failed-precondition]: The query requires an index. You can create it here: https://console.firebase.google.com/v1/r/project/codeskytz-app/firestore/indexes?create_composite=ClJwcm9qZWN0cy9jb2Rlc2t5dHotYXBwL2RhdGFiYXNlcy8oZGVmYXVsdCkvY29sbGVjdGlvbkdyb3Vwcy9jYXJvdXNlbF9hZHMvaW5kZXhlcy9fEAEaDAoIaXNBY3RpdmUQARoJCgVvcmRlchABGgwKCF9fbmFtZV9fEAE
+[00:42:13.378] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:42:19.446] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[00:42:26.128] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:31.013] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:31.972] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="page.js">
+            <SegmentTrieNode>
+            <Home>
+              <main className="min-h-screen">
+                <Header>
+                <Carousel>
+                <section>
+                <section>
+                <Portfolio>
+                <section>
+                <Contact>
+                  <section id="contact" className="w-full bg-...">
+                    <div className="container ...">
+                      <div>
+                      <div className="max-w-6xl ...">
+                        <div className="grid grid-...">
+                          <div>
+                          <div>
+                            <form onSubmit={function handleSubmit} className="space-y-6">
+                              <div>
+                              <div>
+                                <label>
+                                <input
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  value=""
+                                  onChange={function handleChange}
+                                  required={true}
+                                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:rin..."
+                                  placeholder="your.email@example.com"
+-                                 style={{background-image:"url(\"data...",background-repeat:"no-repeat",background-size:"20px", ...}}
+-                                 data-temp-mail-org="0"
+                                >
+                              ...
+                ...
+          ...
+        ...
+
+[00:45:37.927] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[00:46:04.667] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:14.972] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[00:48:18.682] Server  LOG      ✓ Compiled in 0ms
+[00:48:35.495] Server  LOG      ✓ Compiled in 0ms
+[00:48:56.938] Server  LOG      ✓ Compiled in 422ms
+[00:50:41.697] Server  LOG      ✓ Compiled in 366ms
+[00:51:05.883] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:51:08.070] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:05:58.138] Server  LOG      ✓ Compiled in 526ms
+[01:06:09.972] Server  LOG      ✓ Compiled in 419ms
+[01:06:21.280] Server  LOG      ✓ Compiled in 367ms
+[01:06:57.190] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:07:54.477] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:08:00.036] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., description: ..., createdAt: {seconds: ..., nanoseconds: 950000000}, order: ..., title: ..., link: ..., isActive: ..., image: ..., updatedAt: ...}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:08:00.036] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., description: ..., createdAt: ..., order: ..., title: ..., link: ..., isActive: ..., image: ..., updatedAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:08:01.865] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:08:04.291] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:11:37.685] Server  LOG      ✓ Compiled in 463ms
+[01:11:37.908] Browser ERROR   ./components/Carousel.js:187:1
+Parsing ecmascript source code failed
+  185 |     </section>
+  186 |   )
+> 187 | }
+      | ^
+  188 |
+  189 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import trace:
+  Server Component:
+    ./components/Carousel.js
+    ./app/page.js
+[01:11:46.856] Server  LOG      ✓ Compiled in 259ms
+[01:11:46.961] Browser ERROR   ./components/Carousel.js:187:1
+Parsing ecmascript source code failed
+  185 |     </section>
+  186 |   )
+> 187 | }
+      | ^
+  188 |
+  189 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import trace:
+  Server Component:
+    ./components/Carousel.js
+    ./app/page.js
+[01:11:55.867] Server  LOG      ✓ Compiled in 312ms
+[01:11:59.872] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., createdAt: {seconds: ..., nanoseconds: 950000000}, order: ..., updatedAt: ..., image: ..., isActive: ..., description: ..., title: ..., link: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:11:59.875] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., createdAt: ..., order: 0, updatedAt: {seconds: ..., nanoseconds: 950000000}, image: ..., isActive: ..., description: ..., title: ..., link: ...}
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:12:30.180] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:12:32.228] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:13:01.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:13:02.638] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[01:13:51.118] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:13:51.119] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: ..., link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:13:55.052] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:13:57.279] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:13:57.280] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: ..., link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:13:58.139] Browser ERROR   uncaughtError: Error: Failed to load chunk /_next/static/chunks/_a3aa7693._.js from module [project]/node_modules/next/dist/compiled/react-server-dom-turbopack/cjs/react-server-dom-turbopack-client.browser.development.js [app-client] (ecmascript)
+[01:14:06.354] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:14:06.358] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: ..., link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:14:09.581] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:10.688] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="page.js">
+            <SegmentTrieNode>
+            <Home>
+              <main className="min-h-screen">
+                <Header>
+                <Carousel>
+                <section>
+                <section>
+                <Portfolio>
+                <section>
+                <Contact>
+                  <section id="contact" className="w-full bg-...">
+                    <div className="container ...">
+                      <div>
+                      <div className="max-w-6xl ...">
+                        <div className="grid grid-...">
+                          <div>
+                          <div>
+                            <form onSubmit={function handleSubmit} className="space-y-6">
+                              <div>
+                              <div>
+                                <label>
+                                <input
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  value=""
+                                  onChange={function handleChange}
+                                  required={true}
+                                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:rin..."
+                                  placeholder="your.email@example.com"
+-                                 style={{background-image:"url(\"data...",background-repeat:"no-repeat",background-size:"20px", ...}}
+-                                 data-temp-mail-org="0"
+                                >
+                              ...
+                ...
+          ...
+        ...
+
+[01:14:20.360] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:14:45.953] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:14:45.963] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: ..., link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:17:59.555] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: ...}
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:17:59.557] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., updatedAt: ..., link: ..., image: ..., order: ..., isActive: ..., description: ..., title: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:18:01.932] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:30.513] Server  LOG      ✓ Compiled in 282ms
+[01:21:58.590] Server  LOG      ✓ Compiled in 245ms
+[01:24:58.120] Server  LOG      ✓ Compiled in 286ms
+[01:25:10.944] Server  LOG      ✓ Compiled in 301ms
+[01:25:29.362] Server  LOG      ✓ Compiled in 170ms
+[01:26:59.974] Server  LOG      ✓ Compiled in 255ms
+[01:32:59.907] Server  LOG      ✓ Compiled in 1481ms
+[01:33:06.269] Server  LOG      ✓ Compiled in 234ms
+[01:33:17.696] Server  LOG      ✓ Compiled in 291ms
+[01:37:44.048] Server  LOG      ✓ Compiled in 1224ms
+[01:38:00.150] Server  LOG      ✓ Compiled in 464ms
+[01:39:23.567] Server  LOG      ✓ Compiled in 1562ms
+[01:39:52.290] Server  LOG      ✓ Compiled in 1262ms
+[01:40:04.801] Server  LOG      ✓ Compiled in 253ms
+[01:40:09.440] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, order: ..., isActive: ..., createdAt: ...}
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:09.441] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: ..., order: ..., isActive: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:12.073] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, order: ..., isActive: ..., createdAt: ...}
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:12.087] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: ..., order: ..., isActive: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:13.835] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, order: ..., isActive: ..., createdAt: ...}
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:13.836] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: ..., order: ..., isActive: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:15.334] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: {seconds: ..., nanoseconds: 447000000}, order: ..., isActive: ..., createdAt: ...}
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:15.337] Server  ERROR   Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
+  {id: ..., image: ..., title: ..., link: ..., description: ..., updatedAt: ..., order: ..., isActive: ..., createdAt: {seconds: ..., nanoseconds: 950000000}}
+                                                                                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[01:40:22.370] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:40:22.370] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:42:19.647] Server  LOG      ✓ Compiled in 1676ms
+[01:42:40.776] Server  LOG      ✓ Compiled in 1709ms
+[01:43:14.705] Server  LOG      ✓ Compiled in 1652ms
+[01:43:54.436] Server  LOG      ✓ Compiled in 1757ms
+[01:45:47.629] Server  LOG      ✓ Compiled in 392ms
+[01:46:20.006] Server  LOG      ✓ Compiled in 380ms
+[01:46:35.583] Server  LOG      ✓ Compiled in 439ms
+[01:46:49.557] Server  LOG      ✓ Compiled in 412ms
+[01:47:03.551] Server  LOG      ✓ Compiled in 485ms
+[01:47:24.341] Server  LOG      ✓ Compiled in 489ms
+[01:55:38.511] Browser ERROR   Failed to fetch RSC payload for http://localhost:3000/. Falling back to browser navigation. {}
+[01:55:44.307] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:55:45.917] Server  LOG      ✓ Compiled in 286ms
+[01:55:49.966] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:55:49.966] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:55:49.967] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[01:55:53.283] Server  LOG      ✓ Compiled in 300ms
+[01:56:07.332] Server  LOG      ✓ Compiled in 332ms
+[01:56:19.976] Server  LOG      ✓ Compiled in 6.2s
+[01:56:23.713] Server  LOG      ✓ Compiled in 705ms
+[01:56:41.572] Server  LOG      ✓ Compiled in 757ms
+[01:56:49.881] Server  LOG      ✓ Compiled in 705ms
+[01:56:56.528] Server  LOG      ✓ Compiled in 644ms
+[01:57:05.899] Server  LOG      ✓ Compiled in 621ms
+[01:57:12.580] Server  LOG      ✓ Compiled in 267ms
+[01:57:20.752] Server  LOG      ✓ Compiled in 146ms
+[01:57:27.986] Server  LOG      ✓ Compiled in 180ms
+[01:57:36.038] Server  LOG      ✓ Compiled in 198ms
+[01:57:43.769] Server  LOG      ✓ Compiled in 157ms
+[01:57:51.008] Server  LOG      ✓ Compiled in 142ms
+[01:58:54.651] Server  LOG      ✓ Compiled in 217ms
+[01:59:14.587] Server  LOG      ✓ Compiled in 266ms
+[02:01:42.140] Server  LOG      ✓ Compiled in 2.1s
+[02:04:59.017] Server  LOG      ✓ Compiled in 780ms
+[02:05:11.697] Server  LOG      ✓ Compiled in 572ms
+[02:05:25.043] Server  LOG      ✓ Compiled in 722ms
+[02:05:34.053] Server  LOG      ✓ Compiled in 436ms
+[02:06:03.770] Server  LOG      ✓ Compiled in 1486ms
+[02:06:41.063] Server  LOG      ✓ Compiled in 595ms
+[02:07:29.527] Server  LOG      ✓ Compiled in 655ms
+[02:07:39.971] Server  LOG      ✓ Compiled in 641ms
+[02:07:52.372] Server  LOG      ✓ Compiled in 713ms
+[02:08:04.772] Server  LOG      ✓ Compiled in 593ms
+[02:08:29.772] Server  LOG      ✓ Compiled in 578ms
+[02:08:59.581] Server  LOG      ✓ Compiled in 656ms
+[02:09:37.931] Server  LOG      ✓ Compiled in 629ms
+[02:10:01.867] Server  LOG      ✓ Compiled in 473ms
+[02:10:15.624] Server  LOG      ✓ Compiled in 509ms
+[02:10:37.260] Server  LOG      ✓ Compiled in 680ms
+[02:10:51.620] Server  LOG      ✓ Compiled in 699ms
+[02:11:06.962] Server  LOG      ✓ Compiled in 1280ms
+[02:11:21.129] Server  LOG      ✓ Compiled in 501ms
+[02:11:57.120] Server  LOG      ✓ Compiled in 1170ms
+[02:14:14.627] Server  LOG      ✓ Compiled in 1881ms
+[02:20:38.954] Server  LOG      ✓ Compiled in 1778ms
+[02:21:07.045] Server  LOG      ✓ Compiled in 2.1s
+[02:21:08.547] Browser ERROR   uncaughtError: ReferenceError: FiSun is not defined
+[02:21:34.225] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:21:34.227] Server  LOG      ✓ Compiled in 259ms
+[02:21:40.900] Browser ERROR   uncaughtError: Error: useTheme must be used within a ThemeProvider
+[02:21:45.171] Server  ERROR    ⨯ Error: useTheme must be used within a ThemeProvider
+[02:21:45.700] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:21:46.854] Browser ERROR   uncaughtError: Error: useTheme must be used within a ThemeProvider
+[02:21:47.394] Server  LOG      ✓ Compiled in 18ms
+[02:21:53.894] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:21:56.263] Browser ERROR   uncaughtError: Error: useTheme must be used within a ThemeProvider
+[02:23:04.707] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:23:04.708] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./contexts/ThemeContext.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[02:23:04.722] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:23:04.736] Server  LOG      ✓ Compiled in 976ms
+[02:23:15.968] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:23:21.397] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <RedirectBoundary>
+      <RedirectErrorBoundary router={{...}}>
+        <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+          <SegmentViewNode type="page" pagePath="page.js">
+            <SegmentTrieNode>
+            <Home>
+              <main className="min-h-scre...">
+                <Header>
+                <Carousel>
+                <section>
+                <section>
+                <Portfolio>
+                <section>
+                <Contact>
+                  <section id="contact" className="w-full bg-...">
+                    <div className="container ...">
+                      <div>
+                      <div className="max-w-6xl ...">
+                        <div className="grid grid-...">
+                          <div>
+                          <div>
+                            <form onSubmit={function handleSubmit} className="space-y-6">
+                              <div>
+                              <div>
+                                <label>
+                                <input
+                                  type="email"
+                                  id="email"
+                                  name="email"
+                                  value=""
+                                  onChange={function handleChange}
+                                  required={true}
+                                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray..."
+                                  placeholder="your.email@example.com"
+-                                 style={{background-image:"url(\"data...",background-repeat:"no-repeat",background-size:"20px", ...}}
+-                                 data-temp-mail-org="0"
+                                >
+                              ...
+                ...
+          ...
+        ...
+
+[02:23:32.363] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./contexts/ThemeContext.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[02:23:32.364] Server  LOG      ✓ Compiled in 389ms
+[02:23:47.586] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[02:23:56.744] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:24:22.422] Browser ERROR   Error fetching projects: {"code":"failed-precondition","name":"FirebaseError"}
+[02:25:30.497] Server  LOG      ✓ Compiled in 804ms
+[02:25:39.618] Server  LOG      ✓ Compiled in 482ms
+[02:29:40.706] Server  LOG      ✓ Compiled in 1532ms
+[02:29:44.265] Browser ERROR   Error fetching contact info: {"code":"permission-denied","name":"FirebaseError"}
+[02:30:08.896] Server  LOG      ✓ Compiled in 548ms
+[02:43:55.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:44:06.586] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[02:44:23.694] Browser ERROR   Error fetching contact info: {"code":"permission-denied","name":"FirebaseError"}
+[02:46:11.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:46:13.700] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[02:46:40.561] Server  LOG      ✓ Compiled in 184ms
+[02:47:03.699] Server  LOG      ✓ Compiled in 80ms
+[02:47:58.829] Server  LOG      ✓ Compiled in 443ms
+[02:49:49.143] Server  LOG      ✓ Compiled in 564ms
+[02:50:58.747] Server  LOG      ✓ Compiled in 2.4s
+[02:52:15.450] Server  LOG      ✓ Compiled in 937ms
+[02:53:09.395] Server  LOG      ✓ Compiled in 939ms

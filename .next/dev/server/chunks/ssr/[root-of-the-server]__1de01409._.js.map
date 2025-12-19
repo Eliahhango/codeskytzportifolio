@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///home/anonynoman/Desktop/codeskytzportifolio/components/Header.js"],"sourcesContent":["export default function Header() {\n  return (\n    <header className=\"w-full bg-gradient-to-r from-ocean-blue via-ocean-blue-light to-ocean-blue-dark shadow-lg\">\n      <div className=\"container mx-auto px-4 py-6\">\n        <h1 className=\"text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-wide\">\n          <span \n            className=\"drop-shadow-[0_2px_8px_rgba(255,255,255,0.5),0_4px_12px_rgba(0,0,0,0.4)]\"\n            style={{\n              textShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.5), 0 2px 4px rgba(0,0,0,0.3)'\n            }}\n          >\n            CODESKYTZ\n          </span>\n        </h1>\n      </div>\n    </header>\n  )\n}\n\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAO,WAAU;kBAChB,cAAA,8OAAC;YAAI,WAAU;sBACb,cAAA,8OAAC;gBAAG,WAAU;0BACZ,cAAA,8OAAC;oBACC,WAAU;oBACV,OAAO;wBACL,YAAY;oBACd;8BACD;;;;;;;;;;;;;;;;;;;;;AAOX"}},
+    {"offset": {"line": 58, "column": 0}, "map": {"version":3,"sources":["file:///home/anonynoman/Desktop/codeskytzportifolio/app/page.js"],"sourcesContent":["import Header from '@/components/Header'\n\nexport default function Home() {\n  return (\n    <main>\n      <Header />\n    </main>\n  )\n}\n\n"],"names":[],"mappings":";;;;;AAAA;;;AAEe,SAAS;IACtB,qBACE,8OAAC;kBACC,cAAA,8OAAC,+HAAM;;;;;;;;;;AAGb"}}]
+}
