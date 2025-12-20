@@ -136,6 +136,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    suppressHydrationWarning
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:ring-2 focus:ring-ocean-blue focus:border-transparent outline-none"
                     placeholder="your.email@example.com"
                   />

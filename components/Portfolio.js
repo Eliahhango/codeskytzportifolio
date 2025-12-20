@@ -4,59 +4,22 @@ import { useState, useEffect } from 'react'
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
 import { getProjects } from '@/lib/services/projectsService'
 
-// Default projects for fallback
-const defaultProjects = [
-  {
-    title: 'E-Commerce Platform',
-    description: 'Full-stack e-commerce solution with payment integration and admin dashboard.',
-    tech: ['Next.js', 'Node.js', 'PostgreSQL'],
-    image: 'bg-blue-200',
-  },
-  {
-    title: 'Task Management App',
-    description: 'Collaborative task management tool with real-time updates and notifications.',
-    tech: ['React', 'Firebase', 'TypeScript'],
-    image: 'bg-green-200',
-  },
-  {
-    title: 'Analytics Dashboard',
-    description: 'Data visualization dashboard with interactive charts and reporting features.',
-    tech: ['Vue.js', 'Python', 'MongoDB'],
-    image: 'bg-purple-200',
-  },
-  {
-    title: 'Mobile Banking App',
-    description: 'Secure mobile banking application with biometric authentication.',
-    tech: ['React Native', 'Node.js', 'MySQL'],
-    image: 'bg-orange-200',
-  },
-  {
-    title: 'SaaS Platform',
-    description: 'Subscription-based SaaS platform with multi-tenant architecture.',
-    tech: ['Next.js', 'AWS', 'DynamoDB'],
-    image: 'bg-red-200',
-  },
-  {
-    title: 'IoT Dashboard',
-    description: 'Real-time IoT device monitoring and control dashboard.',
-    tech: ['React', 'MQTT', 'InfluxDB'],
-    image: 'bg-yellow-200',
-  },
-]
-
 export default function Portfolio() {
-  const [projects, setProjects] = useState(defaultProjects)
+  const [projects, setProjects] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const result = await getProjects()
-        if (result.success && result.data.length > 0) {
+        if (result.success) {
           setProjects(result.data)
+        } else {
+          setProjects([])
         }
       } catch (error) {
         console.error('Error fetching projects:', error)
+        setProjects([])
       } finally {
         setLoading(false)
       }
@@ -79,6 +42,10 @@ export default function Portfolio() {
         {loading ? (
           <div className="text-center py-12">
             <p className="text-gray-600 dark:text-gray-400 text-lg">Loading projects...</p>
+          </div>
+        ) : projects.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-400 text-lg">No projects available at the moment.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

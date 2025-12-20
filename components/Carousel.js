@@ -15,7 +15,6 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
  */
 export default function Carousel({ ads = [] }) {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlay, setIsAutoPlay] = useState(true)
   const [showContent, setShowContent] = useState(false)
 
   // If no ads provided, use placeholder data
@@ -47,14 +46,14 @@ export default function Carousel({ ads = [] }) {
 
   // Auto-play functionality - auto-scroll every 5 seconds if more than one ad
   useEffect(() => {
-    if (!isAutoPlay || displayAds.length <= 1) return
+    if (displayAds.length <= 1) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % displayAds.length)
     }, 5000) // Change slide every 5 seconds
 
     return () => clearInterval(interval)
-  }, [isAutoPlay, displayAds.length])
+  }, [displayAds.length])
 
   // Reset content visibility when slide changes
   useEffect(() => {
@@ -63,21 +62,18 @@ export default function Carousel({ ads = [] }) {
 
   const goToSlide = (index) => {
     setCurrentIndex(index)
-    setIsAutoPlay(false) // Pause auto-play when user manually navigates
   }
 
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? displayAds.length - 1 : prevIndex - 1
     )
-    setIsAutoPlay(false)
   }
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === displayAds.length - 1 ? 0 : prevIndex + 1
     )
-    setIsAutoPlay(false)
   }
 
   if (displayAds.length === 0) {
@@ -190,18 +186,6 @@ export default function Carousel({ ads = [] }) {
           </div>
         )}
 
-        {/* Pause/Resume Indicator */}
-        {displayAds.length > 1 && (
-          <div className="absolute top-4 right-4 z-20">
-            <button
-              onClick={() => setIsAutoPlay(!isAutoPlay)}
-              className="bg-white bg-opacity-80 hover:bg-opacity-100 text-ocean-blue px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200"
-              aria-label={isAutoPlay ? 'Pause carousel' : 'Resume carousel'}
-            >
-              {isAutoPlay ? 'Pause' : 'Play'}
-            </button>
-          </div>
-        )}
       </div>
     </section>
   )

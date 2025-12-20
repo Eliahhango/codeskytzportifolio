@@ -429,7 +429,6 @@ var _s = __turbopack_context__.k.signature();
 function Carousel({ ads = [] }) {
     _s();
     const [currentIndex, setCurrentIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
-    const [isAutoPlay, setIsAutoPlay] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [showContent, setShowContent] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     // If no ads provided, use placeholder data
     const defaultAds = [
@@ -459,7 +458,7 @@ function Carousel({ ads = [] }) {
     // Auto-play functionality - auto-scroll every 5 seconds if more than one ad
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Carousel.useEffect": ()=>{
-            if (!isAutoPlay || displayAds.length <= 1) return;
+            if (displayAds.length <= 1) return;
             const interval = setInterval({
                 "Carousel.useEffect.interval": ()=>{
                     setCurrentIndex({
@@ -473,7 +472,6 @@ function Carousel({ ads = [] }) {
             })["Carousel.useEffect"];
         }
     }["Carousel.useEffect"], [
-        isAutoPlay,
         displayAds.length
     ]);
     // Reset content visibility when slide changes
@@ -486,15 +484,12 @@ function Carousel({ ads = [] }) {
     ]);
     const goToSlide = (index)=>{
         setCurrentIndex(index);
-        setIsAutoPlay(false); // Pause auto-play when user manually navigates
     };
     const goToPrevious = ()=>{
         setCurrentIndex((prevIndex)=>prevIndex === 0 ? displayAds.length - 1 : prevIndex - 1);
-        setIsAutoPlay(false);
     };
     const goToNext = ()=>{
         setCurrentIndex((prevIndex)=>prevIndex === displayAds.length - 1 ? 0 : prevIndex + 1);
-        setIsAutoPlay(false);
     };
     if (displayAds.length === 0) {
         return null;
@@ -527,28 +522,28 @@ function Carousel({ ads = [] }) {
                             className: "carousel-pattern z-[1]"
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 121,
+                            lineNumber: 117,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "carousel-pattern-grid z-[1]"
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 122,
+                            lineNumber: 118,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "carousel-pattern-circles z-[1]"
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 123,
+                            lineNumber: 119,
                             columnNumber: 11
                         }, this),
                         backgroundImage && showContent && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 z-[5]"
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 127,
+                            lineNumber: 123,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -561,7 +556,7 @@ function Carousel({ ads = [] }) {
                                         children: currentAd.title
                                     }, void 0, false, {
                                         fileName: "[project]/components/Carousel.js",
-                                        lineNumber: 137,
+                                        lineNumber: 133,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -569,7 +564,7 @@ function Carousel({ ads = [] }) {
                                         children: currentAd.description
                                     }, void 0, false, {
                                         fileName: "[project]/components/Carousel.js",
-                                        lineNumber: 140,
+                                        lineNumber: 136,
                                         columnNumber: 15
                                     }, this),
                                     currentAd.link && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -578,24 +573,24 @@ function Carousel({ ads = [] }) {
                                         children: "Learn More"
                                     }, void 0, false, {
                                         fileName: "[project]/components/Carousel.js",
-                                        lineNumber: 144,
+                                        lineNumber: 140,
                                         columnNumber: 17
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/Carousel.js",
-                                lineNumber: 136,
+                                lineNumber: 132,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 131,
+                            lineNumber: 127,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Carousel.js",
-                    lineNumber: 108,
+                    lineNumber: 104,
                     columnNumber: 9
                 }, this),
                 displayAds.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -608,12 +603,12 @@ function Carousel({ ads = [] }) {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/Carousel.js",
-                                lineNumber: 163,
+                                lineNumber: 159,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 158,
+                            lineNumber: 154,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -624,12 +619,12 @@ function Carousel({ ads = [] }) {
                                 size: 24
                             }, void 0, false, {
                                 fileName: "[project]/components/Carousel.js",
-                                lineNumber: 170,
+                                lineNumber: 166,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 165,
+                            lineNumber: 161,
                             columnNumber: 13
                         }, this)
                     ]
@@ -642,44 +637,27 @@ function Carousel({ ads = [] }) {
                             "aria-label": `Go to slide ${index + 1}`
                         }, index, false, {
                             fileName: "[project]/components/Carousel.js",
-                            lineNumber: 179,
+                            lineNumber: 175,
                             columnNumber: 15
                         }, this))
                 }, void 0, false, {
                     fileName: "[project]/components/Carousel.js",
-                    lineNumber: 177,
-                    columnNumber: 11
-                }, this),
-                displayAds.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "absolute top-4 right-4 z-20",
-                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: ()=>setIsAutoPlay(!isAutoPlay),
-                        className: "bg-white bg-opacity-80 hover:bg-opacity-100 text-ocean-blue px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
-                        "aria-label": isAutoPlay ? 'Pause carousel' : 'Resume carousel',
-                        children: isAutoPlay ? 'Pause' : 'Play'
-                    }, void 0, false, {
-                        fileName: "[project]/components/Carousel.js",
-                        lineNumber: 196,
-                        columnNumber: 13
-                    }, this)
-                }, void 0, false, {
-                    fileName: "[project]/components/Carousel.js",
-                    lineNumber: 195,
+                    lineNumber: 173,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Carousel.js",
-            lineNumber: 106,
+            lineNumber: 102,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Carousel.js",
-        lineNumber: 99,
+        lineNumber: 95,
         columnNumber: 5
     }, this);
 }
-_s(Carousel, "mxYg2Oq5lUULxfMoZHXwHeWXxKU=");
+_s(Carousel, "eh4fDc+XdVTJ/uxGHCjOC+qmO3U=");
 _c = Carousel;
 var _c;
 __turbopack_context__.k.register(_c, "Carousel");
@@ -866,72 +844,9 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-// Default projects for fallback
-const defaultProjects = [
-    {
-        title: 'E-Commerce Platform',
-        description: 'Full-stack e-commerce solution with payment integration and admin dashboard.',
-        tech: [
-            'Next.js',
-            'Node.js',
-            'PostgreSQL'
-        ],
-        image: 'bg-blue-200'
-    },
-    {
-        title: 'Task Management App',
-        description: 'Collaborative task management tool with real-time updates and notifications.',
-        tech: [
-            'React',
-            'Firebase',
-            'TypeScript'
-        ],
-        image: 'bg-green-200'
-    },
-    {
-        title: 'Analytics Dashboard',
-        description: 'Data visualization dashboard with interactive charts and reporting features.',
-        tech: [
-            'Vue.js',
-            'Python',
-            'MongoDB'
-        ],
-        image: 'bg-purple-200'
-    },
-    {
-        title: 'Mobile Banking App',
-        description: 'Secure mobile banking application with biometric authentication.',
-        tech: [
-            'React Native',
-            'Node.js',
-            'MySQL'
-        ],
-        image: 'bg-orange-200'
-    },
-    {
-        title: 'SaaS Platform',
-        description: 'Subscription-based SaaS platform with multi-tenant architecture.',
-        tech: [
-            'Next.js',
-            'AWS',
-            'DynamoDB'
-        ],
-        image: 'bg-red-200'
-    },
-    {
-        title: 'IoT Dashboard',
-        description: 'Real-time IoT device monitoring and control dashboard.',
-        tech: [
-            'React',
-            'MQTT',
-            'InfluxDB'
-        ],
-        image: 'bg-yellow-200'
-    }
-];
 function Portfolio() {
     _s();
-    const [projects, setProjects] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(defaultProjects);
+    const [projects, setProjects] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "Portfolio.useEffect": ()=>{
@@ -939,11 +854,14 @@ function Portfolio() {
                 "Portfolio.useEffect.fetchProjects": async ()=>{
                     try {
                         const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$services$2f$projectsService$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getProjects"])();
-                        if (result.success && result.data.length > 0) {
+                        if (result.success) {
                             setProjects(result.data);
+                        } else {
+                            setProjects([]);
                         }
                     } catch (error) {
                         console.error('Error fetching projects:', error);
+                        setProjects([]);
                     } finally{
                         setLoading(false);
                     }
@@ -966,7 +884,7 @@ function Portfolio() {
                             children: "Our Portfolio"
                         }, void 0, false, {
                             fileName: "[project]/components/Portfolio.js",
-                            lineNumber: 71,
+                            lineNumber: 34,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -974,13 +892,13 @@ function Portfolio() {
                             children: "Showcasing our latest projects and successful implementations"
                         }, void 0, false, {
                             fileName: "[project]/components/Portfolio.js",
-                            lineNumber: 74,
+                            lineNumber: 37,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/Portfolio.js",
-                    lineNumber: 70,
+                    lineNumber: 33,
                     columnNumber: 9
                 }, this),
                 loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -990,12 +908,26 @@ function Portfolio() {
                         children: "Loading projects..."
                     }, void 0, false, {
                         fileName: "[project]/components/Portfolio.js",
-                        lineNumber: 81,
+                        lineNumber: 44,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/components/Portfolio.js",
-                    lineNumber: 80,
+                    lineNumber: 43,
+                    columnNumber: 11
+                }, this) : projects.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center py-12",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-gray-600 dark:text-gray-400 text-lg",
+                        children: "No projects available at the moment."
+                    }, void 0, false, {
+                        fileName: "[project]/components/Portfolio.js",
+                        lineNumber: 48,
+                        columnNumber: 13
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/components/Portfolio.js",
+                    lineNumber: 47,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
@@ -1019,7 +951,7 @@ function Portfolio() {
                                             className: "absolute inset-0 bg-black bg-opacity-20"
                                         }, void 0, false, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 113,
+                                            lineNumber: 80,
                                             columnNumber: 23
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1027,13 +959,13 @@ function Portfolio() {
                                             children: project.title.charAt(0)
                                         }, void 0, false, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 115,
+                                            lineNumber: 82,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Portfolio.js",
-                                    lineNumber: 100,
+                                    lineNumber: 67,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1044,7 +976,7 @@ function Portfolio() {
                                             children: project.title
                                         }, void 0, false, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 120,
+                                            lineNumber: 87,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1052,7 +984,7 @@ function Portfolio() {
                                             children: project.description
                                         }, void 0, false, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 123,
+                                            lineNumber: 90,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1062,12 +994,12 @@ function Portfolio() {
                                                     children: tech
                                                 }, techIndex, false, {
                                                     fileName: "[project]/components/Portfolio.js",
-                                                    lineNumber: 128,
+                                                    lineNumber: 95,
                                                     columnNumber: 25
                                                 }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 126,
+                                            lineNumber: 93,
                                             columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1081,14 +1013,14 @@ function Portfolio() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiExternalLink"], {}, void 0, false, {
                                                             fileName: "[project]/components/Portfolio.js",
-                                                            lineNumber: 144,
+                                                            lineNumber: 111,
                                                             columnNumber: 27
                                                         }, this),
                                                         "View Project"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/Portfolio.js",
-                                                    lineNumber: 138,
+                                                    lineNumber: 105,
                                                     columnNumber: 25
                                                 }, this),
                                                 project.codeLink && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1099,53 +1031,53 @@ function Portfolio() {
                                                     children: [
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiGithub"], {}, void 0, false, {
                                                             fileName: "[project]/components/Portfolio.js",
-                                                            lineNumber: 155,
+                                                            lineNumber: 122,
                                                             columnNumber: 27
                                                         }, this),
                                                         "Code"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/Portfolio.js",
-                                                    lineNumber: 149,
+                                                    lineNumber: 116,
                                                     columnNumber: 25
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Portfolio.js",
-                                            lineNumber: 136,
+                                            lineNumber: 103,
                                             columnNumber: 21
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/Portfolio.js",
-                                    lineNumber: 119,
+                                    lineNumber: 86,
                                     columnNumber: 19
                                 }, this)
                             ]
                         }, project.id || index, true, {
                             fileName: "[project]/components/Portfolio.js",
-                            lineNumber: 96,
+                            lineNumber: 63,
                             columnNumber: 17
                         }, this);
                     })
                 }, void 0, false, {
                     fileName: "[project]/components/Portfolio.js",
-                    lineNumber: 84,
+                    lineNumber: 51,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/Portfolio.js",
-            lineNumber: 69,
+            lineNumber: 32,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/Portfolio.js",
-        lineNumber: 68,
+        lineNumber: 31,
         columnNumber: 5
     }, this);
 }
-_s(Portfolio, "6KlT2vLLIsWlJ/1jxf93T3woliU=");
+_s(Portfolio, "OQ1VoVBkBYQ0DtEeE9la9LZgEb0=");
 _c = Portfolio;
 var _c;
 __turbopack_context__.k.register(_c, "Portfolio");
@@ -1586,6 +1518,7 @@ function Contact() {
                                                     value: formData.email,
                                                     onChange: handleChange,
                                                     required: true,
+                                                    suppressHydrationWarning: true,
                                                     className: "w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg focus:ring-2 focus:ring-ocean-blue focus:border-transparent outline-none",
                                                     placeholder: "your.email@example.com"
                                                 }, void 0, false, {
@@ -1607,7 +1540,7 @@ function Contact() {
                                                     children: "Message"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Contact.js",
-                                                    lineNumber: 144,
+                                                    lineNumber: 145,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1621,13 +1554,13 @@ function Contact() {
                                                     placeholder: "Tell us about your project..."
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/Contact.js",
-                                                    lineNumber: 147,
+                                                    lineNumber: 148,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Contact.js",
-                                            lineNumber: 143,
+                                            lineNumber: 144,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1637,13 +1570,13 @@ function Contact() {
                                                 "Send Message",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2d$icons$2f$fi$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["FiSend"], {}, void 0, false, {
                                                     fileName: "[project]/components/Contact.js",
-                                                    lineNumber: 163,
+                                                    lineNumber: 164,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/Contact.js",
-                                            lineNumber: 158,
+                                            lineNumber: 159,
                                             columnNumber: 17
                                         }, this)
                                     ]
